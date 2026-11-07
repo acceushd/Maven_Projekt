@@ -1,6 +1,7 @@
 import de.hft_stuttgart.swp_maven.HashGenerator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,7 +37,9 @@ public class TestClass {
         assertNotEquals(hash1, hash2);
     }
 
+    // This Test fails on purpose
     @Test
+    @Disabled
     void sha512TwoDifferentMessagesFalse() {
         System.out.println("SHA-512 Different Message");
         String hash1 = hashGenerator.generateHash("Hello, world!", "sha512");
