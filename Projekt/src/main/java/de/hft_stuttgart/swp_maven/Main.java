@@ -5,19 +5,22 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.Properties;
 import java.util.Scanner;
 
 public class Main {
 
-    static void main(String[] args) {
+    public static void main(String[] args) {
         HashGenerator hashGenerator = new HashGenerator();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the Algorithm you wanna use (md5, sha256, sha512):");
-        String algorithm = scanner.nextLine();
+        String algorithm = scanner.nextLine().trim();
         System.out.println("Enter the Message you wanna hash:");
-        String message = args.length != 0 ? String.join("", args) : scanner.nextLine();
+        String message = args.length != 0 ? String.join("", args) : scanner.nextLine().trim();
+        algorithm = Objects.equals(algorithm, "") ? "sha512" : algorithm;
         String hashedMessage = hashGenerator.generateHash(message, algorithm);
+        message = Objects.equals(message, "") ? "\"Empty String\"" : message;
         System.out.printf("Here is the Message %s.\nHere is the algorithm %s.\nAnd here is the hashed Message %s.\n",
                 message, algorithm, hashedMessage);
 
